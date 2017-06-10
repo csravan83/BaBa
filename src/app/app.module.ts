@@ -25,6 +25,7 @@ import { TimeAgoPipe } from 'time-ago-pipe';
 import { Geolocation } from '@ionic-native/geolocation';
 
 
+
 @NgModule({
   declarations: [
     MyApp,
@@ -35,7 +36,7 @@ import { Geolocation } from '@ionic-native/geolocation';
     Write,
     Post,
     TabsPage,
-    TimeAgoPipe
+    TimeAgoPipe,
   ],
   imports: [
     BrowserModule,

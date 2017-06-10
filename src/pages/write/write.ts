@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, Input } from '@angular/core';
 import { NavController, ViewController, NavParams } from 'ionic-angular';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -18,6 +18,13 @@ export class Write {
   messages: FirebaseListObservable<any>;
   comments: FirebaseListObservable<any>;
   location: {};
+  
+  context: any;
+  @Input() width: number;
+  @Input() height: number;
+  @ViewChild('videoplayer') videoPlayer: any;
+  @ViewChild('canvas') canvas: any;
+  public showVideo: any = false; 
 
   constructor(public navCtrl: NavController,
               public afData: AngularFireDatabase,
@@ -42,7 +49,6 @@ export class Write {
   }
 
   post(){
-    console.log(this.location)
     if(this.type === 'post'){
       this.messages = this.afData.list('/messages');
       this.messages.push({
@@ -74,4 +80,14 @@ export class Write {
       this.navCtrl.pop();
   }
 
+  ngOnInit(){
+    let img = document.getElementById('myFileInput')
+
+    img.addEventListener('change', function(e){
+      console.log(e)
+      console.log(e.target)
+      console.log(e.currentTarget)
+      console.log(e.srcElement)
+    })
+  }
 }

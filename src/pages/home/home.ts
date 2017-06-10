@@ -99,4 +99,8 @@ ngOnInit() {
     this.change.emit({myVote: this.myVote});
   }
 
+  doRefresh(refresher){
+    console.log("PHILIPP IMPLEMENT THAT SHIT by Philipp")
+    refresher.complete();
+  }
 }

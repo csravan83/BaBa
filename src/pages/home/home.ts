@@ -38,12 +38,16 @@ export class HomePage {
 ngOnInit() {
   this.geolocation.getCurrentPosition().then((resp) => {
     this.location = { lat: resp.coords.latitude, lng: resp.coords.longitude }
-    
+
     this.db.database.ref('/messages').limitToLast(50).on('value', asyncItems => {
       console.log(asyncItems.val())
+      const myItems = asyncItems.val()
+      for (let prop in myItems) {
+        this.items.push(myItems[prop])
+      }
     })
 
-    
+
     }).catch((error) => {
       console.log('Error getting location', error);
     });

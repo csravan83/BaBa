@@ -20,11 +20,10 @@ export class Post {
               public navParams: NavParams) {
         this.item = this.navParams.get('item')
         this.comments = this.afData.list('/messages/' + this.item.$key + '/comments');
-      this.platform.registerBackButtonAction(function(event){
+        this.platform.registerBackButtonAction(function(event){
         close();
       })       
 }
-
 
   comment(){
    let commentModal = this.modal.create(Write, {type: 'comment', postId: this.item.$key});

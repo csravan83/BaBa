@@ -5,6 +5,7 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 import { Write } from '../write/write';
 import { Post } from '../post/post';
 import "rxjs/add/operator/map";
+import { Geolocation } from '@ionic-native/geolocation';
 
 
 @Component({
@@ -17,6 +18,7 @@ export class HomePage {
   constructor(public navCtrl: NavController,
               public modal: ModalController,
               public navPar: NavParams, 
+              private geolocation: Geolocation,
               private db: AngularFireDatabase,
               public afAuth: AngularFireAuth) {
 
@@ -26,8 +28,11 @@ export class HomePage {
           limitToLast: 50
         }
       }).map((array) => array.reverse()) as FirebaseListObservable<any[]>;
+
+      console.log(this.geolocation.getCurrentPosition())
       
   }
+
 
   writePost(){
    let profileModal = this.modal.create(Write, {type: 'post'});

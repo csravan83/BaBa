@@ -9,14 +9,6 @@ import { Geolocation } from '@ionic-native/geolocation';
 
 import { LatLonEllipsoidal } from "geodesy"
 
-// const distances = sectors.map((sector) => {
-//   const p1 = new LatLonEllipsoidal(Number(sector[0].lat), Number(sector[0].lng))
-//   const p2 = new LatLonEllipsoidal(Number(sector[1].lat), Number(sector[1].lng))
-//   return p1.distanceTo(p2)
-// })
-
-
-
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -37,15 +29,14 @@ export class HomePage {
               private db: AngularFireDatabase,
               public afAuth: AngularFireAuth) {
 
-
-
-      console.log(this.geolocation.getCurrentPosition())
-
-
   }
 
 ionViewWillEnter() {
-  this.geolocation.getCurrentPosition().then((resp) => {
+  this.loadData()
+}
+
+  loadData(){
+    this.geolocation.getCurrentPosition().then((resp) => {
     this.location = { lat: resp.coords.latitude, lng: resp.coords.longitude }
 
     this.db.database.ref('/messages').limitToLast(50).on('value', asyncItems => {
@@ -61,13 +52,24 @@ ionViewWillEnter() {
         const distance = distanceInMeters / 1000
         this.items.push({ ...myItem, distance, postID: prop })
       }
+      
+         var len = this.items.length;
+          for (var i = len-1; i>=0; i--){
+            for(var j = 1; j<=i; j++){
+              if(this.items[j-1].createAt<this.items[j].createAt){
+                  var temp = this.items[j-1];
+                  this.items[j-1] = this.items[j];
+                  this.items[j] = temp;
+                }
+            }
+          }
     })
 
 
     }).catch((error) => {
       console.log('Error getting location', error);
     });
-}
+  }
 
   writePost(){
    let profileModal = this.modal.create(Write, {type: 'post'});
@@ -128,7 +130,7 @@ ionViewWillEnter() {
 
 
   doRefresh(refresher){
-    console.log("PHILIPP IMPLEMENT THAT SHIT by Philipp")
+    this.loadData();
     refresher.complete();
   }
 

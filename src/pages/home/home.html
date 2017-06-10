@@ -15,7 +15,7 @@
         <div class="post-wrapper" (click)="openPost(item)">
         <ion-row>
           <ion-col col-8>
-            
+
               <ion-grid>
                 <ion-row>
                   <ion-col col-12>
@@ -35,10 +35,10 @@
                   </ion-col>
                 </ion-row>
               </ion-grid>
-            
+
           </ion-col>
           <ion-col col-4>
-            <div class="vote roundrect">
+            <div class="vote circle">
               <div class="increment up" [class.highlighted]="item.voteCount == 1" (click)="upVote(item.postID)">
 
 
@@ -51,7 +51,7 @@
             </div>
 
           </ion-col>
-          
+
         </ion-row>
         </div>
       </ion-grid>

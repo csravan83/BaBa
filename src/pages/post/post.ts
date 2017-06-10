@@ -12,16 +12,15 @@ export class Post {
 
   item;
   comments: FirebaseListObservable<any>;
-  constructor(public navCtrl: NavController, 
+  constructor(public navCtrl: NavController,
               public afData: AngularFireDatabase,
               public modal: ModalController,
               public afAuth: AngularFireAuth,
               private platform: Platform,
               public navParams: NavParams) {
         this.item = this.navParams.get('item')
-        this.comments = this.afData.list('/messages/' + this.item.postID + '/comments');   
+        this.comments = this.afData.list('/messages/' + this.item.postID + '/comments');
 }
-
   comment(){
    let commentModal = this.modal.create(Write, {type: 'comment', postId: this.item.postID});
    commentModal.present();
@@ -29,5 +28,4 @@ export class Post {
   close(){
       this.navCtrl.pop();
   }
-
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter} from '@angular/core';
 import { NavController, ModalController, NavParams } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
@@ -15,11 +15,14 @@ import { Geolocation } from '@ionic-native/geolocation';
 //   return p1.distanceTo(p2)
 // })
 
+
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
+
   items=[];
 
   location: {};
@@ -31,6 +34,10 @@ export class HomePage {
               private geolocation: Geolocation,
               private db: AngularFireDatabase,
               public afAuth: AngularFireAuth) {
+
+
+
+      console.log(this.geolocation.getCurrentPosition())
 
 
   }
@@ -62,6 +69,34 @@ ngOnInit() {
   openPost(item){
    let profileModal = this.modal.create(Post, {item});
    profileModal.present();
+  }
+
+  @Input() voteCount=4;
+  @Input() myVote = 0;
+
+  @Output('vote') change = new EventEmitter();
+
+  upVote(){
+    if(this.myVote==1){
+       return;
+    }
+
+    this.myVote++;
+    this.voteCount++;
+    this.emitEvent();
+
+  }
+  downVote(){
+    if(this.myVote== -1){
+      return;
+    }
+    this.myVote--;
+    this.voteCount--;
+    this.emitEvent();
+
+  }
+  emitEvent(){
+    this.change.emit({myVote: this.myVote});
   }
 
 }

@@ -43,6 +43,8 @@ ngOnInit() {
       console.log(asyncItems.val())
       const myItems = asyncItems.val()
       for (let prop in myItems) {
+        const myItem = myItems[prop]
+        // const distance =
         this.items.push(myItems[prop])
       }
     })

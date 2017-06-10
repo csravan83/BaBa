@@ -1,16 +1,18 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>BaBa @ Khlong 6</ion-title>
+    <ion-title>BaBa</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
 
-<div *ngFor="let item of items | async">
+<div *ngFor="let item of items">
   <div class="post-wrapper" (click)="openPost(item)">
     <ion-grid>
       <ion-row>
-        <ion-col col-12><div class="post">{{item.text}}</div></ion-col>
+        <ion-col col-12>
+          <div class="post">{{item.dis}} // {{item.text}}</div>
+        </ion-col>
       </ion-row>
     </ion-grid>
 

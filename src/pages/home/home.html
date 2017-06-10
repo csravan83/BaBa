@@ -12,46 +12,38 @@
   <div *ngFor="let item of items">
     <div *ngIf="item.distance < 0.5">
       <ion-grid>
-        <div class="post-wrapper" (click)="openPost(item)">
-        <ion-row>
-          <ion-col col-8>
-
+        <div class="post-wrapper">
+        <ion-row justify-content-between>
+          <ion-col col-10 (click)="openPost(item)">
               <ion-grid>
                 <ion-row>
-                  <ion-col col-12>
+                  <ion-col col-10>
                     <div class="post">{{item.text}}</div>
-                    <div>{{item.distance}}</div>
                   </ion-col>
                 </ion-row>
               </ion-grid>
               <ion-grid>
                 <ion-row>
-                  <ion-col col-6>
-                    <div class="time">{{item.createAt | timeAgo}}</div>
-                  </ion-col>
-                  <ion-col col-6>
-                    <div class="comment" *ngIf="item.commentsCount != 0">
-                      <ion-icon name="chatboxes"></ion-icon> {{item.commentsCount}}</div>
+   
+                  <ion-col col-12>
+                    <span class="comment" *ngIf="item.commentsCount != 0">
+                      <ion-icon name="chatboxes"></ion-icon> {{item.commentsCount}} - 
+                    </span>
+                    <span class="time">{{item.createAt | timeAgo}}</span>
                   </ion-col>
                 </ion-row>
               </ion-grid>
 
           </ion-col>
-          <ion-col col-4>
+          <ion-col col-2>
             <div class="vote circle">
               <div class="increment up" [class.highlighted]="item.voteCount == 1" (click)="upVote(item.postID)">
-
-
               </div>
               <div class="increment down" [class.highlighted]="item.voteCount == -1" (click)="downVote(item.postID)">
-
               </div>
               <div class="count">{{ item.voteCount }}</div>
-
             </div>
-
           </ion-col>
-
         </ion-row>
         </div>
       </ion-grid>

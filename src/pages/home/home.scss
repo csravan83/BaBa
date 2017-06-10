@@ -20,7 +20,9 @@
   cursor: pointer;
 }
 
-
+.grid{
+  padding: 0px;
+}
 
 
 .highlighted {
@@ -44,13 +46,14 @@
     color: #666;
     font-family: 'Itim', cursive;
     font-size: 14px;
-    text-align: left;
+    text-align: right;
+    margin-right: 20px;
 }
 
 
 
 
-$size : 10rem;
+$size : 8rem;
 $border-width : .5rem;
 $radius : 1rem; /* try 50% */
 $transition : .3s;
@@ -86,13 +89,22 @@ $red : #C15044;
   cursor: pointer;
 
   &.up {
-    background: $green;
-    height: 50%;
-    margin-bottom: $border-width/2;
+    width: 0; 
+    height: 0; 
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    
+    border-bottom: 25px solid #fff;
+    margin-bottom: 20px;
   }
   &.down {
-    background: $red;
-    height: 50%;
+    width: 0; 
+    height: 0; 
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    
+    border-top: 25px solid #fff;
+    margin-top:20px;
   }
 
   &:hover {
@@ -106,13 +118,14 @@ $red : #C15044;
   top: 0;
   border-radius: $radius*.1;
   margin: $size*.25;
-  background: $bg;
-  width: $size*.5;
+  //background: $bg;
+  //width: $size*.5;
   font-size: $size*.25;
   font-weight: bold;
-  line-height: $size*.5;
+  line-height: $size*0.6;
+  color: #fff;
   text-align: center;
-  box-shadow: 0 0 0 $border-width $bg;
+  //box-shadow: 0 0 0 $border-width $bg;
   pointer-events: none;
 
   &.upvoted { color: $green; }

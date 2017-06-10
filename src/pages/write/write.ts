@@ -35,9 +35,7 @@ export class Write {
       this.type = this.navParams.get('type');
       if(this.type === 'comment'){
         this.placeholder = "Write a comment";
-        this.postId = this.navParams.get('postId');
-        console.log(this.postId)
-        
+        this.postId = this.navParams.get('postId');        
       }
 
       this.geolocation.getCurrentPosition().then((resp) => {

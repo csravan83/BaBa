@@ -31,18 +31,18 @@
 
     <div class="vote roundrect">
       <div class="increment up"
-           [class.highlighted] = "myVote == 1"
+           [class.highlighted] = "item.voteCount == 1"
            (click) = "upVote(item.postID)">
 
 
       </div>
       <div class="increment down"
 
-           [class.highlighted] = "myVote == -1"
-           (click) = "downVote()">
+           [class.highlighted] = "item.voteCount == -1"
+           (click) = "downVote(item.postID)">
 
       </div>
-      <div class="count">{{ voteCount }}</div>
+      <div class="count">{{ item.voteCount }}</div>
 
     </div>
   </div>

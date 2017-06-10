@@ -44,12 +44,12 @@ export class HomePage {
 
   }
 
-ngOnInit() {
+ionViewWillEnter() {
   this.geolocation.getCurrentPosition().then((resp) => {
     this.location = { lat: resp.coords.latitude, lng: resp.coords.longitude }
 
     this.db.database.ref('/messages').limitToLast(50).on('value', asyncItems => {
-      console.log(asyncItems.val())
+      this.items = [];
       const myItems = asyncItems.val()
       for (let prop in myItems) {
         const myItem = myItems[prop]
@@ -85,46 +85,37 @@ ngOnInit() {
 
   upVote(postID){
 
-   /* if(this.myVote==1){
+   if(this.myVote==1){
        return;
     }
 
+      this.db.object('/messages/' + postID + '/voteCount').$ref
+      .ref.transaction(voteCount => {
+          if (voteCount === null) {
+              return voteCount = 1;
+          } else {
+              return voteCount + 1;
+          }
+      })
     this.myVote++;
     this.voteCount++;
     this.emitEvent();
-*/
-
-      /*this.db.database.ref("/messages/" +postID).update({
-        votes: {}
-      })*/
-
-    this.db.database.ref("/messages/"+postID+"/upVotes/").once("value", info => {
-      const itemData = info.val()
-
-
-      this.votes = this.db.object('/messages/' + postID + '/upVotes')
-
-
-      this.votes.push({text: this.text, createAt: Date.now(), user: this.afAuth.auth.currentUser.uid}).then(() => {
-        this.navCtrl.pop();
-
-      })
-
-
-    })
-
-
-      //this.db.database.ref().
-
-
 
     }
 
 
-  downVote(){
+  downVote(postID){
     if(this.myVote== -1){
       return;
     }
+      this.db.object('/messages/' + postID + '/voteCount').$ref
+      .ref.transaction(voteCount => {
+          if (voteCount === null) {
+              return voteCount = 0;
+          } else {
+              return voteCount - 1;
+          }
+      })
     this.myVote--;
     this.voteCount--;
     this.emitEvent();
@@ -134,12 +125,11 @@ ngOnInit() {
     this.change.emit({myVote: this.myVote});
   }
 
-<<<<<<< HEAD
 
-=======
+
   doRefresh(refresher){
     console.log("PHILIPP IMPLEMENT THAT SHIT by Philipp")
     refresher.complete();
   }
->>>>>>> 31639a22ebbc586d4add2530f697464b023a31b6
+
 }

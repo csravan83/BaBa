@@ -18,14 +18,14 @@ export class Write {
   messages: FirebaseListObservable<any>;
   comments: FirebaseListObservable<any>;
   location: {};
-  
+/*  
   context: any;
   @Input() width: number;
   @Input() height: number;
   @ViewChild('videoplayer') videoPlayer: any;
   @ViewChild('canvas') canvas: any;
   public showVideo: any = false; 
-
+*/
   constructor(public navCtrl: NavController,
               public afData: AngularFireDatabase,
               public afAuth: AngularFireAuth,
@@ -33,7 +33,12 @@ export class Write {
               private geolocation: Geolocation,
               public navParams: NavParams) {
       this.type = this.navParams.get('type');
-
+      if(this.type === 'comment'){
+        this.placeholder = "Write a comment";
+        this.postId = this.navParams.get('postId');
+        console.log(this.postId)
+        
+      }
 
       this.geolocation.getCurrentPosition().then((resp) => {
         this.location = { lat: resp.coords.latitude, lng: resp.coords.longitude }
@@ -41,10 +46,7 @@ export class Write {
           console.log('Error getting location', error);
         });
       // console.log(this.geolocation.getCurrentPosition())
-      if(this.type === 'comment'){
-        this.placeholder = "Write a comment"
-        this.postId = this.navParams.get('postId');
-      }
+
 
   }
 
@@ -56,11 +58,15 @@ export class Write {
         createAt: Date.now(),
         user: this.afAuth.auth.currentUser.uid,
         commentsCount: 0,
+        voteCount: 0,
         location: this.location
       }).then(() => {
         this.navCtrl.pop();
       })
-    } if(this.type === 'comment'){
+    } 
+    
+    
+    if(this.type === 'comment'){
       this.afData.object('/messages/' + this.postId + '/commentsCount').$ref
       .ref.transaction(commentsCount => {
           if (commentsCount === null) {
@@ -75,15 +81,13 @@ export class Write {
       })
     }
 
+
+
   }
   close(){
       this.navCtrl.pop();
   }
 
-<<<<<<< HEAD
-
-
-=======
   ngOnInit(){
     let img = document.getElementById('myFileInput')
 
@@ -94,5 +98,5 @@ export class Write {
       console.log(e.srcElement)
     })
   }
->>>>>>> 31639a22ebbc586d4add2530f697464b023a31b6
+
 }

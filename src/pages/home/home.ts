@@ -22,14 +22,11 @@ import { Geolocation } from '@ionic-native/geolocation';
   templateUrl: 'home.html'
 })
 export class HomePage {
-<<<<<<< HEAD
-  items: FirebaseListObservable<any>;
-=======
+
   items=[];
 
   location: {};
   item: {};
->>>>>>> eded6e23e1139808efc9dec51d5c93e548323524
 
   constructor(public navCtrl: NavController,
               public modal: ModalController,
@@ -39,22 +36,21 @@ export class HomePage {
               public afAuth: AngularFireAuth) {
 
 
-<<<<<<< HEAD
+
       console.log(this.geolocation.getCurrentPosition())
 
-=======
->>>>>>> eded6e23e1139808efc9dec51d5c93e548323524
+
   }
 
 ngOnInit() {
   this.geolocation.getCurrentPosition().then((resp) => {
     this.location = { lat: resp.coords.latitude, lng: resp.coords.longitude }
-    
+
     this.db.database.ref('/messages').limitToLast(50).on('value', asyncItems => {
       console.log(asyncItems.val())
     })
 
-    
+
     }).catch((error) => {
       console.log('Error getting location', error);
     });

@@ -17,7 +17,7 @@ export class Write {
   messages: FirebaseListObservable<any>;
   comments: FirebaseListObservable<any>;
 
-  constructor(public navCtrl: NavController, 
+  constructor(public navCtrl: NavController,
               public afData: AngularFireDatabase,
               public afAuth: AngularFireAuth,
               public view: ViewController,
@@ -27,13 +27,13 @@ export class Write {
         this.placeholder = "Write a comment"
         this.postId = this.navParams.get('postId');
       }
-      
+
   }
 
   post(){
     if(this.type === 'post'){
       this.messages = this.afData.list('/messages');
-      this.messages.push({text: this.text, createAt: Date.now(), user: this.afAuth.auth.currentUser.uid, commentsCount: 0}).then(() => {
+      this.messages.push({text: this.text, createAt: Date.now(), user: this.afAuth.auth.currentUser.uid, commentsCount: 1000}).then(() => {
         this.navCtrl.pop();
       })
     } if(this.type === 'comment'){
@@ -48,7 +48,7 @@ export class Write {
       this.comments = this.afData.list('/messages/' + this.postId + '/comments' );
       this.comments.push({text: this.text, createAt: Date.now(), user: this.afAuth.auth.currentUser.uid}).then(() => {
         this.navCtrl.pop();
-      })      
+      })
     }
 
   }

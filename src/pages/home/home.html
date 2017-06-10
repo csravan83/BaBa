@@ -10,43 +10,41 @@
   </ion-refresher>
 
 <div *ngFor="let item of items">
-  <div class="post-wrapper" (click)="openPost(item)">
-    <ion-grid>
-      <ion-row>
+  <div *ngIf="item.distance < 0.5">
+    <div class="post-wrapper" (click)="openPost(item)">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-12>
+            <div class="post">{{item.text}}</div>
+            <div>{{item.distance}}</div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
 
-        <ion-col col-12><div class="post">{{item.text}}</div></ion-col>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-6><div class="time">{{item.createAt | timeAgo}}</div></ion-col>
+          <ion-col col-6><div class="comment" *ngIf="item.commentsCount != 0"><ion-icon name="chatboxes"></ion-icon> {{item.commentsCount}}</div></ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+    <div class="vote roundrect">
+      <div class="increment up"
+           [class.highlighted] = "myVote == 1"
+           (click) = "upVote()">
 
 
-        <ion-col col-12>
-          <div class="post">{{item.dis}} // {{item.text}}</div>
-        </ion-col>
+      </div>
+      <div class="increment down"
 
-      </ion-row>
-    </ion-grid>
+           [class.highlighted] = "myVote == -1"
+           (click) = "downVote()">
 
-    <ion-grid>
-      <ion-row>
-        <ion-col col-6><div class="time">{{item.createAt | timeAgo}}</div></ion-col>
-        <ion-col col-6><div class="comment" *ngIf="item.commentsCount != 0"><ion-icon name="chatboxes"></ion-icon> {{item.commentsCount}}</div></ion-col>
-      </ion-row>
-    </ion-grid>
-  </div>
-
-  <div class="vote roundrect">
-    <div class="increment up"
-         [class.highlighted] = "myVote == 1"
-         (click) = "upVote()">
-
+      </div>
+      <div class="count">{{ voteCount }}</div>
 
     </div>
-    <div class="increment down"
-
-         [class.highlighted] = "myVote == -1"
-         (click) = "downVote()">
-
-    </div>
-    <div class="count">{{ voteCount }}</div>
-
   </div>
 
 </div>

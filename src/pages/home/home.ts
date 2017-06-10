@@ -7,7 +7,7 @@ import { Post } from '../post/post';
 import "rxjs/add/operator/map";
 import { Geolocation } from '@ionic-native/geolocation';
 
-// import { LatLonEllipsoidal } from "geodesy"
+import { LatLonEllipsoidal } from "geodesy"
 
 // const distances = sectors.map((sector) => {
 //   const p1 = new LatLonEllipsoidal(Number(sector[0].lat), Number(sector[0].lng))
@@ -51,8 +51,15 @@ ngOnInit() {
       const myItems = asyncItems.val()
       for (let prop in myItems) {
         const myItem = myItems[prop]
-        // const distance =
-        this.items.push(myItems[prop])
+        const itemLocation = myItem.location || { lat: 10, lng: 10 }
+
+        const postLocation = new LatLonEllipsoidal(itemLocation.lat, itemLocation.lng)
+        const userLocation = new LatLonEllipsoidal(resp.coords.latitude, resp.coords.longitude)
+        const distanceInMeters = postLocation.distanceTo(userLocation)
+        const distance = distanceInMeters / 1000
+        console.log(distance)
+        console.log(myItem)
+        this.items.push({ ...myItem, distance })
       }
     })
 

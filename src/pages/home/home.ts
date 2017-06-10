@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter} from '@angular/core';
 import { NavController, ModalController, NavParams } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
@@ -8,16 +8,18 @@ import "rxjs/add/operator/map";
 import { Geolocation } from '@ionic-native/geolocation';
 
 
+
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-  items: FirebaseListObservable<any>;;
+  items: FirebaseListObservable<any>;
 
   constructor(public navCtrl: NavController,
               public modal: ModalController,
-              public navPar: NavParams, 
+              public navPar: NavParams,
               private geolocation: Geolocation,
               private db: AngularFireDatabase,
               public afAuth: AngularFireAuth) {
@@ -30,7 +32,7 @@ export class HomePage {
       }).map((array) => array.reverse()) as FirebaseListObservable<any[]>;
 
       console.log(this.geolocation.getCurrentPosition())
-      
+
   }
 
 
@@ -41,6 +43,34 @@ export class HomePage {
   openPost(item){
    let profileModal = this.modal.create(Post, {item});
    profileModal.present();
+  }
+
+  @Input() voteCount=4;
+  @Input() myVote = 0;
+
+  @Output('vote') change = new EventEmitter();
+
+  upVote(){
+    if(this.myVote==1){
+       return;
+    }
+
+    this.myVote++;
+    this.voteCount++;
+    this.emitEvent();
+
+  }
+  downVote(){
+    if(this.myVote== -1){
+      return;
+    }
+    this.myVote--;
+    this.voteCount--;
+    this.emitEvent();
+
+  }
+  emitEvent(){
+    this.change.emit({myVote: this.myVote});
   }
 
 }

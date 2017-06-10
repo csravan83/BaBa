@@ -11,6 +11,7 @@
     <ion-grid>
       <ion-row>
         <ion-col col-12><div class="post">{{item.text}}</div></ion-col>
+
       </ion-row>
     </ion-grid>
 
@@ -21,7 +22,29 @@
       </ion-row>
     </ion-grid>
   </div>
+
+  <div class="vote roundrect">
+    <div class="increment up"
+         [class.highlighted] = "myVote == 1"
+         (click) = "upVote()">
+
+
+    </div>
+    <div class="increment down"
+
+         [class.highlighted] = "myVote == -1"
+         (click) = "downVote()">
+
+    </div>
+    <div class="count">{{ voteCount }}</div>
+
+  </div>
+
 </div>
+
+
+
+
 
  <ion-fab bottom right>
    <button ion-fab (click)="writePost()" color="secondary"><ion-icon name="create"></ion-icon></button>

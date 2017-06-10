@@ -1,0 +1,14 @@
+{
+  "name": "BaBa",
+  "short_name": "BaBa",
+  "start_url": "index.html",
+  "display": "standalone",
+  "icons": [{
+    "src": "assets/icon/BaBa-Logo.png",
+    "sizes": "512x512",
+    "type": "image/png"
+  }],
+  "background_color": "#4F94F6",
+  "theme_color": "#4F94F6",
+  "orientation": "portrait"
+}

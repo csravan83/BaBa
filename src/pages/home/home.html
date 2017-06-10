@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>BaBa @ Khlong 6</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+<div *ngFor="let item of items | async">
+  <div class="post-wrapper" (click)="openPost(item)">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-12><div class="post">{{item.text}}</div></ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col col-6><div class="time">{{item.createAt | timeAgo}}</div></ion-col>
+        <ion-col col-6><div class="comment" *ngIf="item.commentsCount != 0"><ion-icon name="chatboxes"></ion-icon> {{item.commentsCount}}</div></ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</div>
+
+ <ion-fab bottom right>
+   <button ion-fab (click)="writePost()" color="secondary"><ion-icon name="create"></ion-icon></button>
+ </ion-fab>
+
+</ion-content>

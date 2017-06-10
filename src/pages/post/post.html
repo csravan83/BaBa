@@ -1,0 +1,23 @@
+<ion-content>
+
+  <div id="post" class="post-wrapper">
+    <div class="post">
+        {{item.text}}
+    </div>
+  </div>
+  <div class="divider"> </div>
+
+<div *ngFor="let comment of comments | async">
+  <div class="comment-wrapper">
+    <div class="comment-inner">
+        {{comment.text}}
+    </div>
+  </div>
+</div>
+
+
+</ion-content>
+<ion-footer padding >
+  <button ion-button block color="secondary" (click)="comment()">Comment</button>
+  <button ion-button block color="secondary" outline (click)="close()">Close</button>
+</ion-footer>

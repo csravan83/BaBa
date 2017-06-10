@@ -4,7 +4,7 @@
   padding-top: 4%;
   padding-bottom: 2%;
   padding-left: 2%;
-  padding-right: 0%;
+  padding-right: 2%;
   margin-bottom: 1px;
   min-height: 75px; }
 
@@ -38,20 +38,6 @@
   text-align: left; }
 
 /* try 50% */
-.roundrect .up {
-  border-radius: 1rem 1rem 0 0; }
-.roundrect .down {
-  border-radius: 0 0 1rem 1rem; }
-.roundrect .count {
-  border-radius: .25rem .25rem; }
-
-.chev .up {
-  border-radius: 50% 50% 0 0; }
-.chev .down {
-  border-radius: 0 0 50% 50%; }
-.chev .count {
-  border-radius: 100%/50%; }
-
 .circle .up {
   border-radius: 10rem 10rem 0 0; }
 .circle .down {

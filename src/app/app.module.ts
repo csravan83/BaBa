@@ -15,6 +15,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 //FIREBASE
+import * as firebase from "firebase";
 import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environment/environment';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -22,6 +23,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 import { TimeAgoPipe } from 'time-ago-pipe';
 import { Geolocation } from '@ionic-native/geolocation';
+
 
 @NgModule({
   declarations: [

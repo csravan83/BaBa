@@ -7,6 +7,13 @@ import { Post } from '../post/post';
 import "rxjs/add/operator/map";
 import { Geolocation } from '@ionic-native/geolocation';
 
+// import { LatLonEllipsoidal } from "geodesy"
+
+// const distances = sectors.map((sector) => {
+//   const p1 = new LatLonEllipsoidal(Number(sector[0].lat), Number(sector[0].lng))
+//   const p2 = new LatLonEllipsoidal(Number(sector[1].lat), Number(sector[1].lng))
+//   return p1.distanceTo(p2)
+// })
 
 
 
@@ -15,7 +22,14 @@ import { Geolocation } from '@ionic-native/geolocation';
   templateUrl: 'home.html'
 })
 export class HomePage {
+<<<<<<< HEAD
   items: FirebaseListObservable<any>;
+=======
+  items=[];
+
+  location: {};
+  item: {};
+>>>>>>> eded6e23e1139808efc9dec51d5c93e548323524
 
   constructor(public navCtrl: NavController,
               public modal: ModalController,
@@ -24,17 +38,27 @@ export class HomePage {
               private db: AngularFireDatabase,
               public afAuth: AngularFireAuth) {
 
-      this.items = this.db.list('/messages', {
-        query: {
-          orderByChild: 'createAt',
-          limitToLast: 50
-        }
-      }).map((array) => array.reverse()) as FirebaseListObservable<any[]>;
 
+<<<<<<< HEAD
       console.log(this.geolocation.getCurrentPosition())
 
+=======
+>>>>>>> eded6e23e1139808efc9dec51d5c93e548323524
   }
 
+ngOnInit() {
+  this.geolocation.getCurrentPosition().then((resp) => {
+    this.location = { lat: resp.coords.latitude, lng: resp.coords.longitude }
+    
+    this.db.database.ref('/messages').limitToLast(50).on('value', asyncItems => {
+      console.log(asyncItems.val())
+    })
+
+    
+    }).catch((error) => {
+      console.log('Error getting location', error);
+    });
+}
 
   writePost(){
    let profileModal = this.modal.create(Write, {type: 'post'});

@@ -6,12 +6,18 @@
 
 <ion-content>
 
-<div *ngFor="let item of items | async">
+<div *ngFor="let item of items">
   <div class="post-wrapper" (click)="openPost(item)">
     <ion-grid>
       <ion-row>
+<<<<<<< HEAD
         <ion-col col-12><div class="post">{{item.text}}</div></ion-col>
 
+=======
+        <ion-col col-12>
+          <div class="post">{{item.dis}} // {{item.text}}</div>
+        </ion-col>
+>>>>>>> eded6e23e1139808efc9dec51d5c93e548323524
       </ion-row>
     </ion-grid>
 

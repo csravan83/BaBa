@@ -9,6 +9,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 
 import { Login } from '../pages/login/login';
 import { HomePage } from '../pages/home/home';
+import * as firebase from "firebase";
 
 @Component({
   templateUrl: 'app.html'

@@ -27,6 +27,8 @@ export class Write {
         this.placeholder = "Write a comment"
         this.postId = this.navParams.get('postId');
       }
+
+      
       
   }
 

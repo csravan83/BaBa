@@ -13,7 +13,8 @@ import { Geolocation } from '@ionic-native/geolocation';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  items: FirebaseListObservable<any>;;
+  items: FirebaseListObservable<any>;
+  
 
   constructor(public navCtrl: NavController,
               public modal: ModalController,
@@ -28,8 +29,6 @@ export class HomePage {
           limitToLast: 50
         }
       }).map((array) => array.reverse()) as FirebaseListObservable<any[]>;
-
-      console.log(this.geolocation.getCurrentPosition())
       
   }
 

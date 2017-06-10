@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter} from '@angular/core';
 import { NavController, ModalController, NavParams } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import { Write } from '../write/write';
 import { Post } from '../post/post';
 import "rxjs/add/operator/map";
@@ -25,8 +25,10 @@ export class HomePage {
 
   items=[];
 
+  votes: FirebaseObjectObservable<any>;
   location: {};
   item: {};
+  text: string;
 
   constructor(public navCtrl: NavController,
               public modal: ModalController,
@@ -57,9 +59,7 @@ ngOnInit() {
         const userLocation = new LatLonEllipsoidal(resp.coords.latitude, resp.coords.longitude)
         const distanceInMeters = postLocation.distanceTo(userLocation)
         const distance = distanceInMeters / 1000
-        console.log(distance)
-        console.log(myItem)
-        this.items.push({ ...myItem, distance })
+        this.items.push({ ...myItem, distance, postID: prop })
       }
     })
 
@@ -78,21 +78,49 @@ ngOnInit() {
    profileModal.present();
   }
 
-  @Input() voteCount=4;
+  @Input() voteCount=0;
   @Input() myVote = 0;
 
   @Output('vote') change = new EventEmitter();
 
-  upVote(){
-    if(this.myVote==1){
+  upVote(postID){
+
+   /* if(this.myVote==1){
        return;
     }
 
     this.myVote++;
     this.voteCount++;
     this.emitEvent();
+*/
 
-  }
+      /*this.db.database.ref("/messages/" +postID).update({
+        votes: {}
+      })*/
+
+    this.db.database.ref("/messages/"+postID+"/upVotes/").once("value", info => {
+      const itemData = info.val()
+
+
+      this.votes = this.db.object('/messages/' + postID + '/upVotes')
+
+
+      this.votes.push({text: this.text, createAt: Date.now(), user: this.afAuth.auth.currentUser.uid}).then(() => {
+        this.navCtrl.pop();
+
+      })
+
+
+    })
+
+
+      //this.db.database.ref().
+
+
+
+    }
+
+
   downVote(){
     if(this.myVote== -1){
       return;
@@ -105,5 +133,6 @@ ngOnInit() {
   emitEvent(){
     this.change.emit({myVote: this.myVote});
   }
+
 
 }

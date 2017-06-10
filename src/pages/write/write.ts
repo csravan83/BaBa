@@ -42,7 +42,6 @@ export class Write {
   }
 
   post(){
-    console.log(this.location)
     if(this.type === 'post'){
       this.messages = this.afData.list('/messages');
       this.messages.push({
@@ -63,8 +62,8 @@ export class Write {
               return commentsCount + 1;
           }
       })
-      this.comments = this.afData.list('/messages/' + this.postId + '/comments' );
-      this.comments.push({text: this.text, createAt: Date.now(), user: this.afAuth.auth.currentUser.uid}).then(() => {
+        this.comments = this.afData.list('/messages/' + this.postId + '/comments' );
+        this.comments.push({text: this.text, createAt: Date.now(), user: this.afAuth.auth.currentUser.uid}).then(() => {
         this.navCtrl.pop();
       })
     }
@@ -73,5 +72,7 @@ export class Write {
   close(){
       this.navCtrl.pop();
   }
+
+
 
 }

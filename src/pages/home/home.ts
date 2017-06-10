@@ -134,5 +134,12 @@ ngOnInit() {
     this.change.emit({myVote: this.myVote});
   }
 
+<<<<<<< HEAD
 
+=======
+  doRefresh(refresher){
+    console.log("PHILIPP IMPLEMENT THAT SHIT by Philipp")
+    refresher.complete();
+  }
+>>>>>>> 31639a22ebbc586d4add2530f697464b023a31b6
 }

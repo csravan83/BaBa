@@ -6,52 +6,61 @@
 
 <ion-content>
   <ion-refresher (ionRefresh)="doRefresh($event)">
-      <ion-refresher-content></ion-refresher-content>
+    <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-<div *ngFor="let item of items">
-  <div *ngIf="item.distance < 0.5">
-    <div class="post-wrapper" (click)="openPost(item)">
+  <div *ngFor="let item of items">
+    <div *ngIf="item.distance < 0.5">
       <ion-grid>
+        <div class="post-wrapper" (click)="openPost(item)">
         <ion-row>
-          <ion-col col-12>
-            <div class="post">{{item.text}}</div>
-            <div>{{item.distance}}</div>
+          <ion-col col-8>
+            
+              <ion-grid>
+                <ion-row>
+                  <ion-col col-12>
+                    <div class="post">{{item.text}}</div>
+                    <div>{{item.distance}}</div>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+              <ion-grid>
+                <ion-row>
+                  <ion-col col-6>
+                    <div class="time">{{item.createAt | timeAgo}}</div>
+                  </ion-col>
+                  <ion-col col-6>
+                    <div class="comment" *ngIf="item.commentsCount != 0">
+                      <ion-icon name="chatboxes"></ion-icon> {{item.commentsCount}}</div>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            
           </ion-col>
+          <ion-col col-4>
+            <div class="vote roundrect">
+              <div class="increment up" [class.highlighted]="item.voteCount == 1" (click)="upVote(item.postID)">
+
+
+              </div>
+              <div class="increment down" [class.highlighted]="item.voteCount == -1" (click)="downVote(item.postID)">
+
+              </div>
+              <div class="count">{{ item.voteCount }}</div>
+
+            </div>
+
+          </ion-col>
+          
         </ion-row>
+        </div>
       </ion-grid>
-
-      <ion-grid>
-        <ion-row>
-          <ion-col col-6><div class="time">{{item.createAt | timeAgo}}</div></ion-col>
-          <ion-col col-6><div class="comment" *ngIf="item.commentsCount != 0"><ion-icon name="chatboxes"></ion-icon> {{item.commentsCount}}</div></ion-col>
-        </ion-row>
-      </ion-grid>
-    </div>
-
-    <div class="vote roundrect">
-      <div class="increment up"
-           [class.highlighted] = "item.voteCount == 1"
-           (click) = "upVote(item.postID)">
-
-
-      </div>
-      <div class="increment down"
-
-           [class.highlighted] = "item.voteCount == -1"
-           (click) = "downVote(item.postID)">
-
-      </div>
-      <div class="count">{{ item.voteCount }}</div>
-
     </div>
   </div>
 
-</div>
 
-
- <ion-fab bottom right>
-   <button ion-fab (click)="writePost()" color="secondary"><ion-icon name="create"></ion-icon></button>
- </ion-fab>
+  <ion-fab bottom right>
+    <button ion-fab (click)="writePost()" color="secondary"><ion-icon name="create"></ion-icon></button>
+  </ion-fab>
 
 </ion-content>

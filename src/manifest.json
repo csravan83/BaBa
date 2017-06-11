@@ -5,10 +5,10 @@
   "display": "standalone",
   "icons": [{
     "src": "assets/icon/BaBa-Logo.png",
-    "sizes": "512x512",
+    "sizes": "100x100",
     "type": "image/png"
   }],
-  "background_color": "#4F94F6",
-  "theme_color": "#4F94F6",
+  "background_color": "#ffd166",
+  "theme_color": "#ffd166",
   "orientation": "portrait"
 }

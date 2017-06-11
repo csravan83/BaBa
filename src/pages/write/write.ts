@@ -12,7 +12,7 @@ export class Write {
 
   type: string;
   postId: string;
-  placeholder= "โพสข้อความ...... (BaBa จะไม่ระบุตัวตนของคุณ)";
+  placeholder= "Share things with people around 10km - 100% anonymous ";
 
   text: string;
   messages: FirebaseListObservable<any>;

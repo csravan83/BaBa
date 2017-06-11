@@ -16,17 +16,14 @@ export class Login {
               public afAuth: AngularFireAuth) {
   }
 
-  presentLoading(){
-    let loader = this.loadingCtrl.create({
-      content: "Loading",
-      duration: 5000
-    });
-    loader.present();
-  }
-
   start(){
+      let loader = this.loadingCtrl.create({
+        content: "Loading",
+        duration: 1500,
+      });
+      loader.present();
     this.afAuth.auth.signInAnonymously().then((info) => {
-
+      loader.dismissAll();
     }).catch((error)=> {
       console.log(error)
     })

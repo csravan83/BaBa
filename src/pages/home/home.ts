@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter} from '@angular/core';
 import { NavController, ModalController, NavParams } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database';
 import { Write } from '../write/write';
 import { Post } from '../post/post';
 import "rxjs/add/operator/map";

@@ -1,0 +1,24 @@
+.wrapper {
+  color: grey;
+  font-family: 'Itim', cursive; }
+
+p {
+  font-size: 18px; }
+
+.small {
+  font-size: 10px; }
+
+.background {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#cdeb8b+0,cdeb8b+100 */
+  background: #cdeb8b;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #cdeb8b 0%, #cdeb8b 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #cdeb8b 0%, #cdeb8b 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #cdeb8b 0%, #cdeb8b 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cdeb8b', endColorstr='#cdeb8b',GradientType=0 );
+  /* IE6-9 */ }
+
+/*# sourceMappingURL=login.css.map */

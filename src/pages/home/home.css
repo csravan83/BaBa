@@ -1,0 +1,118 @@
+@import url(https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic);
+.post-wrapper {
+  background-color: #A8E367;
+  padding-top: 4%;
+  padding-bottom: 2%;
+  padding-left: 2%;
+  padding-right: 2%;
+  margin-bottom: 1px;
+  min-height: 75px; }
+
+.voter {
+  width: 20px;
+  font-size: 34px;
+  text-align: center;
+  color: #999; }
+
+.vote-button {
+  cursor: pointer; }
+
+.grid {
+  padding: 0px; }
+
+.highlighted {
+  color: gold; }
+
+.post {
+  color: #666;
+  font-family: 'Itim', cursive;
+  font-size: 20px; }
+
+.comment {
+  color: rgba(102, 102, 102, 0.44);
+  font-family: 'Itim', cursive;
+  font-size: 14px;
+  text-align: right; }
+
+.time {
+  color: rgba(102, 102, 102, 0.44);
+  font-family: 'Itim', cursive;
+  font-size: 14px;
+  text-align: right;
+  margin-left: 20px; }
+
+/* try 50% */
+.circle .up {
+  border-radius: 8rem 8rem 0 0; }
+.circle .down {
+  border-radius: 0 0 8rem 8rem; }
+.circle .count {
+  border-radius: 50%; }
+
+.vote {
+  display: flex;
+  flex-direction: column;
+  font-family: "Noto Sans";
+  position: relative;
+  width: 8rem;
+  height: 8rem;
+  margin: 1rem; }
+
+.increment {
+  flex: 1 0 0;
+  text-align: center;
+  opacity: .5;
+  transition: 0.3s;
+  cursor: pointer; }
+  .increment.up {
+    width: 0;
+    height: 0;
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    border-bottom: 25px solid #fff;
+    margin-bottom: 20px; }
+  .increment.down {
+    width: 0;
+    height: 0;
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    border-top: 25px solid #fff;
+    margin-top: 20px; }
+  .increment:hover {
+    opacity: 1; }
+
+.count {
+  position: absolute;
+  top: 0;
+  border-radius: 0.1rem;
+  margin: 2rem;
+  font-size: 2rem;
+  font-weight: bold;
+  line-height: 4.8rem;
+  color: #fff;
+  text-align: center;
+  pointer-events: none; }
+  .count.upvoted {
+    color: #4BC35F; }
+  .count.downvoted {
+    color: #C15044; }
+
+.bump {
+  animation: bump 200ms; }
+
+@keyframes bump {
+  30% {
+    transform: scale(1.2); } }
+* {
+  box-sizing: border-box; }
+
+html, body {
+  height: 100%; }
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #F6F3E4; }
+
+/*# sourceMappingURL=home.css.map */

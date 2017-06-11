@@ -19,7 +19,7 @@ export class Login {
   presentLoading(){
     let loader = this.loadingCtrl.create({
       content: "Loading",
-      duration: 3000
+      duration: 5000
     });
     loader.present();
   }

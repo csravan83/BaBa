@@ -32,7 +32,7 @@ export class MyApp {
 
     this.afAuth.auth.onAuthStateChanged(user => {
       if (user) {
-        this.rootPage = Login
+        this.rootPage = HomePage
       } else {
         this.rootPage = Login
       }

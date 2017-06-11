@@ -1,7 +1,7 @@
 <ion-content padding>
 <br />
   <ion-item>
-    <ion-textarea rows="6" [(ngModel)]="text" type="textarea" [placeholder]="placeholder"></ion-textarea>
+    <ion-textarea rows="6" maxLength="500" [(ngModel)]="text" type="textarea" [placeholder]="placeholder"></ion-textarea>
   </ion-item>
 
   <button round ion-button color="secondary" block (click)="post()">Post</button>

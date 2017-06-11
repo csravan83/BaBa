@@ -5,12 +5,12 @@
 </ion-header>
 
 <ion-content>
-  <ion-refresher (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
+  <div *ngIf="promotion">
+    <img src="../../assets/cafe.png">
+  </div>
 
   <div *ngFor="let item of items">
-    <div *ngIf="item.distance < 0.5">
+    <div *ngIf="item.distance < 0.5 && item.voteCount != -5">
       <ion-grid>
         <div class="post-wrapper">
         <ion-row justify-content-between>

@@ -17,6 +17,8 @@ export class HomePage {
 
   items=[];
 
+  promotion: boolean = false;
+
   votes: FirebaseObjectObservable<any>;
   location: {};
   item: {};
@@ -69,6 +71,13 @@ ionViewWillEnter() {
     }).catch((error) => {
       console.log('Error getting location', error);
     });
+
+    this.db.database.ref('/promotion').on('value', promo => {
+      console.log(promo.val())
+      this.promotion = promo.val();
+    })
+
+
   }
 
   writePost(){
@@ -125,13 +134,6 @@ ionViewWillEnter() {
   }
   emitEvent(){
     this.change.emit({myVote: this.myVote});
-  }
-
-
-
-  doRefresh(refresher){
-    this.loadData();
-    refresher.complete();
   }
 
 }

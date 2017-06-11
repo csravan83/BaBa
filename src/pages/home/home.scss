@@ -24,7 +24,6 @@
   padding: 0px;
 }
 
-
 .highlighted {
   color: gold;
 }
@@ -33,21 +32,21 @@
 .post{
     color: #666;
     font-family: 'Itim', cursive;
-    font-size: 25px;
+    font-size: 20px;
 }
 
 .comment{
-    color: #666;
+    color: rgba(102, 102, 102, 0.44);
     font-family: 'Itim', cursive;
     font-size: 14px;
     text-align: right;
 }
 .time{
-    color: #666;
+    color: rgba(102, 102, 102, 0.44);
     font-family: 'Itim', cursive;
     font-size: 14px;
     text-align: right;
-    margin-right: 20px;
+    margin-left: 20px;
 }
 
 

@@ -18,14 +18,7 @@ export class Write {
   messages: FirebaseListObservable<any>;
   comments: FirebaseListObservable<any>;
   location: {};
-/*  
-  context: any;
-  @Input() width: number;
-  @Input() height: number;
-  @ViewChild('videoplayer') videoPlayer: any;
-  @ViewChild('canvas') canvas: any;
-  public showVideo: any = false; 
-*/
+
   constructor(public navCtrl: NavController,
               public afData: AngularFireDatabase,
               public afAuth: AngularFireAuth,
@@ -43,7 +36,6 @@ export class Write {
         }).catch((error) => {
           console.log('Error getting location', error);
         });
-      // console.log(this.geolocation.getCurrentPosition())
 
 
   }
@@ -84,17 +76,6 @@ export class Write {
   }
   close(){
       this.navCtrl.pop();
-  }
-
-  ngOnInit(){
-    let img = document.getElementById('myFileInput')
-
-    img.addEventListener('change', function(e){
-      console.log(e)
-      console.log(e.target)
-      console.log(e.currentTarget)
-      console.log(e.srcElement)
-    })
   }
 
 }

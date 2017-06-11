@@ -14,28 +14,41 @@
       <ion-grid>
         <div class="post-wrapper">
         <ion-row justify-content-between>
-          <ion-col col-10 (click)="openPost(item)">
-              <ion-grid>
+          <ion-col col-9 (click)="openPost(item)">
+            <ion-grid>
+              <ion-row align-items-center>
+                <ion-col align-self-start>
+
+             <ion-grid>
                 <ion-row>
-                  <ion-col col-10>
+                  <ion-col col-12>
                     <div class="post">{{item.text}}</div>
                   </ion-col>
                 </ion-row>
               </ion-grid>
-              <ion-grid>
+
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col align-self-end>
+
+              <ion-grid class="time-comment-wrapper">
                 <ion-row>
-   
                   <ion-col col-12>
-                    <span class="comment" *ngIf="item.commentsCount != 0">
-                      <ion-icon name="chatboxes"></ion-icon> {{item.commentsCount}} - 
+                    <span class="comment">
+                      {{item.commentsCount}} <ion-icon name="chatboxes"></ion-icon> 
                     </span>
                     <span class="time">{{item.createAt | timeAgo}}</span>
                   </ion-col>
                 </ion-row>
               </ion-grid>
 
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+
           </ion-col>
-          <ion-col col-2>
+          <ion-col col-3>
             <div class="vote circle">
               <div class="increment up" [class.highlighted]="item.voteCount == 1" (click)="upVote(item.postID)">
               </div>
